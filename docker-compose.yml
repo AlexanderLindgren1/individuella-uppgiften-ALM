@@ -1,5 +1,5 @@
 
-
+# some problems with gethub
 services:
   db: #tjänsten heter db förkortning för databasen
     image: postgres:latest #använder den senaste versionen för postgres. men latest behövs inte fördetta tillfället.
