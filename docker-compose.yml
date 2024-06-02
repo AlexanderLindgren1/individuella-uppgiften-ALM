@@ -1,0 +1,19 @@
+
+
+services:
+  db: #tjänsten heter db förkortning för databasen
+    image: postgres:latest #använder den senaste versionen för postgres. men latest behövs inte fördetta tillfället.
+    environment: # Används i containern 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: django_db
+    volumes:
+      - /var/lib/postgresql/data
+
+  web:
+    build: . # Om DockerFile skulle vara i en map så skulle man skriva mappens namn som exempel build: ./app Då fångar buildning DockerFile insidan av mappen
+    command: python blog_project/manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    depends_on: #Är beroende på db
+      - db
